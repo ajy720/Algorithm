@@ -1,2 +1,2 @@
 *.exe
-BOJ/.vscode
+/BOJ/.vscode
