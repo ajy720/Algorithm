@@ -1,7 +1,7 @@
 import sys
 sys.setrecursionlimit(10**6)
 
-limit = 30
+limit = 10001
 
 num = [False]*limit
 
@@ -11,7 +11,6 @@ def d(n:int):
         sum += n%10
         n //=10
 
-    num[sum]=True
     if sum > limit-1:
         return
     num[sum]=True
@@ -19,10 +18,10 @@ def d(n:int):
     d(sum)
 
 
-for i in range(limit):
+for i in range(1, limit):
     if num[i] == False:
         d(i)
 
-for i in range(limit):
+for i in range(1, limit):
     if num[i] == False:
         print(i, end=' ')
