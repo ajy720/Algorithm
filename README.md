@@ -5,5 +5,8 @@
 
 
 
-### 📂BOJ
-### 📂NYPC2019
+### 📂[BOJ](https://github.com/ajy720/Algorithm/tree/master/BOJ)
+### 📂[NYPC2019](https://github.com/ajy720/Algorithm/tree/master/NYPC2019)
+
+
+
