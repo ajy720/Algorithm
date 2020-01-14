@@ -11,7 +11,6 @@ def solve(k:int, n:int) -> int:
         matrix[k][n] = 1
         return 1
     
-
     matrix[k][n] = solve(k-1, n)+solve(k, n-1)
     return matrix[k][n]
 
