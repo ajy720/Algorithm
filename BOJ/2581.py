@@ -4,8 +4,8 @@ prime = []
 for i in range(2, MAX):
     if filt[i]:
         prime.append(i)
-    for j in range(i*2, MAX+1, i):
-        filt[j] = False
+        for j in range(i*2, MAX+1, i):
+            filt[j] = False
 
 m = int(input())
 n = int(input())
