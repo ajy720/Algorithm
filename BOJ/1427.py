@@ -1,1 +1,1 @@
-print(''.join(reversed(sorted(list(str(input()))))))
+print(''.join(reversed(sorted(str(input())))))
