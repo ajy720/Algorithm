@@ -1,51 +1,28 @@
-max = -1000000000
-min = 1000000000
-
-def dfs(num, op, x, res, nowOp):
-    if x == n*2-1:
-        global max
-        global min
-        if max < res: max = res
-        if min > res: min = res
+def cal(num, x, add, sub, mul, div):
+    global n, maxv, minv
+    if x == n:
+        maxv = max(num, maxv)
+        minv = min(num, minv)
         return
-    
-    if x%2 == 0: # 숫자 삽입
-        for i in num:
-            tres = 0
-            if x == 0: tres = i
-            else:
-                if nowOp == 0: tres = res + i
-                elif nowOp == 1: tres = res - i
-                elif nowOp == 2: tres = res * i
-                elif nowOp == 3:
-                    if res < 0 ^ i < 0:
-                        tres = abs(res)//abs(i)
-                    else:
-                        tres = res // i
-            temp = num.copy()
-            temp.remove(i)
-            dfs(temp, op, x+1, tres, 5)
-    
-    else : # 연산자 삽입
-        for i in range(4):
-            if op[i] == 0:
-                continue
-            else:
-                temp = op.copy()
-                temp[i] -= 1
-                dfs(num, temp, x+1, res, i)
+    else:
+        if add :
+            cal(num + num_list[x], x+1, add-1, sub, mul, div)
+        if sub :
+            cal(num - num_list[x], x+1, add, sub-1, mul, div)
+        if mul :
+            cal(num * num_list[x], x+1, add, sub, mul-1, div)
+        if div :
+            cal(int(num/num_list[x]), x+1, add, sub, mul, div-1)
 
-
-    pass
+maxv = -1000000000
+minv = 1000000000
 
 n = int(input())
 
-num = list(map(int, input().split())) # 숫자
+num_list = list(map(int, input().split()))
 
-op = list(map(int, input().split())) #연산자
+a, b, c, d = map(int, input().split())
 
-dfs(num.copy(), op.copy(), 0, 0, 0)
-
-print(max)
-print(min)
-
+cal(num_list[0], 1, a, b, c, d)
+print(maxv)
+print(minv)

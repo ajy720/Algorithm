@@ -1,5 +1,5 @@
 def solve(m:int, bt:list):
-    if m == 0:
+    if m == 0:  z
         print(' '.join(bt))
         return
 
