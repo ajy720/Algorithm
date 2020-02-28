@@ -1,13 +1,13 @@
-n = int(input())
-
-arr = []
-
-while n > 1:
-    for i in range(2, n+1):
+def solve(n):
+    for i in range(2, int(n**(1/2))+1):
         if n % i == 0: 
-            arr.append(i)
-            n //= i
-            break
+            print(i)
+            return solve(n//i)
 
-for i in arr:
-    print(i)
+    if n == 1:
+        return
+    
+    print(n)
+    
+if __name__ == "__main__":
+    solve(int(input()))
