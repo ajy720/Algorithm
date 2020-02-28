@@ -1,5 +1,1 @@
-n = int(input())
-
-arr = sorted(map(int,input().split()))
-
-print(arr[0]*arr[-1])
+input();a=sorted(map(int,input().split()));print(a[0]*a[-1])
