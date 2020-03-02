@@ -6,8 +6,9 @@ def nCm(n, m):
 
     son = mom = 1
 
-    for i in range(n, n-m, -1): son *= i
-    for i in range(1, m+1, 1): mom *= i
+    for i in range(0, m): 
+        son *= n-i
+        mom *= i+1
 
     return son//mom
 
