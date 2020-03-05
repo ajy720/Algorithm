@@ -5,7 +5,7 @@ class stack(list):
         except: return "Empty"
     def get_size(self): 
         return len(self)
-    def is_empty(self): return "Not Empty" if self else "Empty"
+    def is_empty(self): return True if not self else False
     def peek(self): 
         try: return self[-1]
         except: return "Empty"
