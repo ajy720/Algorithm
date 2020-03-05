@@ -1,44 +1,22 @@
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
-head = 0
-
-class queue(list):
-    push = list.append
-    
-    def pop1(self):
-        global head
-        try: ret = self[head]; head += 1; return ret
-        except: return -1
-        
-    def get_size(self): 
-        global head
-        return len(self)-head
-    
-    def is_empty(self): return 1 if self.get_size() == 0 else 0
-    
-    def head(self):
-        global head
-        try: return self[head]
-        except: return -1
-        
-    def back(self): 
-        try: return self[-1]
-        except: return -1
+q = deque([])
 
 if __name__ == "__main__":
-    q = queue()
+    q = deque()
 
     for _ in range(int(input())):
         oper = input().rstrip("\n")
         try: oper, param = oper.split()
         except: pass
 
-        if oper == "push": q.push(int(param))
-        elif oper == "pop": print(q.pop1())
-        elif oper == "size": print(q.get_size())
-        elif oper == "empty": print(q.is_empty())
-        elif oper == "front": print(q.head())
-        elif oper == "back": print(q.back())
+        if oper == "push": q.append(int(param))
+        elif oper == "pop": print(q.popleft() if q else -1)
+        elif oper == "size": print(len(q))
+        elif oper == "empty": print(0 if q else 1)
+        elif oper == "front": print(q[0] if q else -1)
+        elif oper == "back": print(q[-1] if q else -1)
         elif oper == "exit": break
