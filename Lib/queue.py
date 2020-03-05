@@ -1,17 +1,23 @@
+head = 0
+
 class queue(list):
     push = list.append
-    def pop1(self): 
-        try: return self.pop(0)
+    def pop1(self):
+        global head
+        try: ret = self[head]; head += 1; return ret
         except: return "Empty"
     def get_size(self): 
-        return len(self)
-    def is_empty(self): return True if not self else False
-    def front(self):
-        try: return self[0]
+        global head
+        return len(self)-head
+    def is_empty(self): return 1 if self.get_size() == 0 else 0
+    def head(self):
+        global head
+        try: return self[head]
         except: return "Empty"
     def back(self): 
         try: return self[-1]
         except: return "Empty"
+
 
 if __name__ == "__main__":
     q = queue()
