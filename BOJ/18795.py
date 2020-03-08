@@ -1,0 +1,1 @@
+i=input;i();x=lambda:sum(map(int,i().split()));print(x()+x())
