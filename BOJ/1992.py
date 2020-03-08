@@ -1,7 +1,6 @@
 import sys
 
 input = sys.stdin.readline
-sys.setrecursionlimit(10**6)
 
 def solve(arr:list, n:int):
     if n == 1:
