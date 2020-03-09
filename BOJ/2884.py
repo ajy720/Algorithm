@@ -1,8 +1,5 @@
-h, m = map(int, input().split())
-
-tot = h*60+m-45
-
-if tot<0:
-    tot=tot+1440
-
-print(tot//60, tot%60)
+h,m=map(int,input().split())
+s=60
+t = h*s+m-45
+if t<0:t+=1440
+print(t//s,t%s)
