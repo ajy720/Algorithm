@@ -7,10 +7,10 @@ def nCm(n, m):
     son = mom = 1
 
     for i in range(0, m): 
-        son *= n-i
-        mom *= i+1
+        son = son * (n-i)
+        mom = mom * (i+1)
 
-    return son//mom
+    return son//mom%10000007
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
