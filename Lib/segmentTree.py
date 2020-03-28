@@ -43,5 +43,12 @@ if __name__ == "__main__":
 
     init(1, 0, n-1)
 
-    while int(input("구간합=1, 종료=0 : ")):
-        print(query(1, 0, n, int(input("시작 : ")), int(input("끝 : "))))
+    while 1:
+        print("입력 형식 : (1=업데이트, 2=구간합) (변경할/시작 노드 인덱스) (변경할 값/끝 노드 인덱스)")
+        oper, o1, o2 = map(int, input().split())
+
+        if oper == 1:
+            update(1, 0, n-1, o1-1, o2-a[o1-1])
+            a[o1-1] = o2
+        elif oper == 2:
+            print(query(1, 0, n-1, o1-1, o2-1))
