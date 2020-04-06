@@ -10,16 +10,12 @@ if __name__ == "__main__":
 
     while l <= r:
         mid = (l + r)//2
-        idx, cnt = 0, 1
+        idx, cnt = arr[0], 1
 
         for i in range(1, n):
-            if arr[i] - arr[idx] >= mid:
+            if arr[i] - idx >= mid:
                 cnt+=1
-                idx = i
-            else: 
-                continue
-
-            if cnt >= c: break
+                idx = arr[i]
         
         if cnt >= c: 
             ans = mid
