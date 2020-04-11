@@ -1,12 +1,13 @@
 import sys
 
+input = sys.stdin.readline
+
 if __name__ == "__main__":
     arr = [None]
-    l = 0
     for _ in range(int(input())):
-        o = int(sys.stdin.readline())
+        o = int(input())
         if o == 0:
-            if not l:
+            if len(arr)==1:
                 print(0)
                 continue
 
@@ -16,7 +17,7 @@ if __name__ == "__main__":
             node = 1
             big = 2
             
-            while big <= l:
+            while big < len(arr):
                 try:
                     if arr[big] < arr[big+1]: big += 1
                 except:
@@ -29,17 +30,13 @@ if __name__ == "__main__":
                 else:
                     break
 
-            l-=1
-
         else:
             arr.append(o)
-            l += 1
-            node = l
+            node = len(arr)-1
+
             while node//2:
                 if arr[node//2] < arr[node]:
                     arr[node//2], arr[node] = arr[node], arr[node//2]
                     node //= 2
                 else: 
                     break
-
-            
