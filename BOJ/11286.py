@@ -34,7 +34,9 @@ class heap:
             b = abs(self.arr[child])
             try:
                 c = abs(self.arr[child+1])
-                if b > c or (b == c and self.arr[child] > self.arr[child+1]): child += 1
+                if b > c or (b == c and self.arr[child] > self.arr[child+1]): 
+                    child += 1
+                    b = abs(self.arr[child])
             except:
                 pass
 
