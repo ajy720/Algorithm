@@ -1,12 +1,7 @@
-def solution(n):
-    answer = 0
-    arr = []
-    while n:
-        arr.append(n%10)
-        n //= 10
+def solution(x, n):
+    answer = [x]
 
-    for i in sorted(arr, reverse=True):
-        answer *= 10
-        answer += i
+    for i in range(n-1):
+        answer.append(answer[-1]+x)
 
     return answer
