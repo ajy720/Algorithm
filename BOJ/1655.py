@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-class heap:
-    arr = [None]
-    def __init__(self):
-        super().__init__()
-    
-    def insert(self, o):
-        self.arr.append(o)
-        node = len(self.arr)-1
-
-        while node // 2:
-            if self.arr[node] < self.arr[node//2]:
-                self.arr[node], self.arr[node//2] = self.arr[node//2], self.arr[node]
-=======
 import sys
 
 input = sys.stdin.readline
@@ -30,34 +16,19 @@ class min_heap:
                     self.arr[node // 2],
                     self.arr[node],
                 )
->>>>>>> bb038e66d8d7365f6cccd2c82d3fbf0b1f94bd05
                 node //= 2
             else:
                 return
 
-<<<<<<< HEAD
-    def delete(self, o):
-        if self.is_empty(): 
-            print(0)
-            return
-
-        self.arr[1], self.arr[-1] = self.arr[-1], self.arr[1]
-        print(self.arr.pop())
-=======
     def delete(self):
         self.arr[1], self.arr[-1] = self.arr[-1], self.arr[1]
         ret = self.arr.pop()
->>>>>>> bb038e66d8d7365f6cccd2c82d3fbf0b1f94bd05
         node, child = 1, 2
 
         while child < len(self.arr):
             try:
-<<<<<<< HEAD
-                if self.arr[child] > self.arr[child+1]: child += 1
-=======
                 if self.arr[child] > self.arr[child + 1]:
                     child += 1
->>>>>>> bb038e66d8d7365f6cccd2c82d3fbf0b1f94bd05
             except:
                 pass
 
@@ -66,12 +37,6 @@ class min_heap:
                 node = child
                 child *= 2
             else:
-<<<<<<< HEAD
-                return
-            
-    def is_empty(self):
-        return True if len(self.arr) == 1 else False
-=======
                 break
         return ret
 
@@ -134,4 +99,3 @@ if __name__ == "__main__":
 
         mid = less.arr[1]
         print(mid)
->>>>>>> bb038e66d8d7365f6cccd2c82d3fbf0b1f94bd05
