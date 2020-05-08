@@ -1,23 +1,24 @@
-n, k = input().split()
-s = list(map(int, input().split()))
+if __name__ == "__main__":
+    
+    n, k = input().split()
+    s = sorted(map(int, input().split()), reverse=True)
+    ans = 0
+    
+    if int(n[0]) in s:
+        pass
+    else:
+        for i in s:
+            if i <= int(n[0]):
+                ans = i
+                break
+        for i in n[1:]:
+            ans *= 10
+            ans += s[0]
+    
+    print(ans)
+        
 
-n = int(n)
-while n > 0:
-    t = n
-    tarr = []
-    while t > 0:
-        tarr[0:0]=[t%10]
-        t//=10
 
-    flag = True
-    for i in range(len(tarr)):
-        if not tarr[i] in s:
-            flag = False
-            n -= n%10**(len(tarr)-i-1) + 1
-
-    if flag: 
-        print(n)
-        break
 '''
 100000000 8
 1 2 3 4 5 6 7 8
