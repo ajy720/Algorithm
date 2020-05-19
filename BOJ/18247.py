@@ -1,5 +1,1 @@
-for _ in range(int(input())):
-    n,m=map(int,input().split())
-    s=m*11+4 
-    if s>n*m or m<4: print(-1)
-    else: print(s)
+for _ in " "*int(input()):n,m=map(int,input().split());print([m*11+4,-1][n<12 or m<4])
