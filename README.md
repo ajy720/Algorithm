@@ -1,11 +1,12 @@
 # Algorithm
 ### 🎯 1 week / 5⬆ solved
-### 🎯 ~ July, 250⬆ solved (BOJ) 
-**0%[⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜]100%**
+### 🎯 ~ July, 275⬆ solved (BOJ) 
+**0%[⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜]100%**
 
 ### Completed goal
 - [x] ~ March, 150⬆ solved (BOJ)
 - [x] ~ March, 200⬆ solved (BOJ)
+- [x] ~ July, 250⬆ solved (BOJ)
 
 
 
