@@ -8,7 +8,7 @@ def bfs():
     q.append(1)
     chk[1] = False
 
-    while len(q):
+    while q:
         t = q.popleft()
 
         ans += 1
