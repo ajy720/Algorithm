@@ -9,36 +9,33 @@ def bfs(k):
 
     ans[k] = 0
     
-    for i in range(v):
-        if arr[k][i]:
-            dq.append((i, arr[k][i]))
-            arr[k][i] = -1
+    while arr[k]:
+        node, weight = arr[k].pop()
+        ans[node] = weight
+        dq.append((node, weight))
     
     while dq:
         node, weight = dq.popleft()
-
-        # if ans[node] > weight:
-        #     ans[node] = weight 
-        if ans[node] == -1:
+        
+        if ans[node] > weight or ans[node] == -1:
             ans[node] = weight 
-            
-        for i in range(v):
-            if arr[node][i]:
-                dq.append((i, arr[node][i] + weight))
-                arr[node][i] = -1
+        
+        while arr[node]:
+            nextNode, nextWeight = arr[node].popleft()
+            dq.append((nextNode, weight + nextWeight))
 
 
 if __name__ == "__main__":
     v, e = map(int, input().split())
     k = int(input()) - 1
-    arr = [[0] * v for _ in range(v)] 
+    arr = [deque() for _ in range(v)]
     ans = [-1] * v
 
     for _ in range(e):
         start, end, weight = map(int, input().split())
         start -= 1
         end -= 1
-        arr[start][end] = weight
+        arr[start].append((end, weight))
 
     # for i in range(v):
     bfs(k)
