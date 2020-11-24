@@ -3,43 +3,49 @@ import heapq
 
 input = sys.stdin.readline
 
-def solve():
-    cost = [sys.maxsize] * n
-    cost[s] = 0
-    is_pass = [False] * n
 
-    q = []
-    heapq.heappush(q, (0, s))
+def dijkstra(startNode):
+    cost = [sys.maxsize] * (n+1)
+    cost[startNode] = 0
+
+    q = [] # (weight, node) 우선순위 큐
+
+    heapq.heappush(q, (0, startNode))
 
     while q:
         weight, node = heapq.heappop(q)
 
-        while arr[node]:
-            nextWeight, nextNode = heapq.heappop(arr[node])
+        for nextWeight, nextNode in arr[node]:
             nextWeight += weight
-            if cost[nextNode] >= nextWeight:
+            if nextWeight < cost[nextNode]:
                 cost[nextNode] = nextWeight
                 heapq.heappush(q, (nextWeight, nextNode))
 
-                if is_pass[node] or nextNode in [g, h] and node in [g, h]:
-                    is_pass[nextNode] = True
+    return cost
 
-    
-    print(*sorted([i+1 for i in arrival if is_pass[i]]))
+
+def solve():
+    start_ = dijkstra(s)
+    g_ = dijkstra(g)
+    h_ = dijkstra(h)
+
+    print(*sorted([i for i in arrival
+        if start_[i] == start_[g] + g_[h] + h_[i] 
+        or start_[i] == start_[h] + h_[g] + g_[i]]))
 
     
 if __name__ == "__main__":
     for _ in ' '*int(input()):
         n, m, t = map(int, input().split())
-        s, g, h = map(lambda x: int(x)-1, input().split())
+        s, g, h = map(int, input().split())
 
-        arr = [[] for _ in ' '*n]
+        arr = [[] for _ in ' '*(n+1)]
 
         for _ in ' '*m:
             a, b, weight = map(int, input().split())
-            heapq.heappush(arr[a-1], (weight, b-1))
-            heapq.heappush(arr[b-1], (weight, a-1))
+            heapq.heappush(arr[a], (weight, b))
+            heapq.heappush(arr[b], (weight, a))
 
-        arrival = [int(input())-1 for _ in ' '*t]
+        arrival = [int(input()) for _ in ' '*t]
 
         solve()
