@@ -1,0 +1,1 @@
+print(*[s[::-1] for s in [input() for _ in ' '*int(input().split()[0])]], sep='\n')
