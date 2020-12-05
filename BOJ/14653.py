@@ -23,7 +23,7 @@ if __name__ == "__main__":
             arr[p] = False
     
     idx = q-2
-    while msg[idx][0] == msg[q-1][0]:
+    while msg[idx][0] == msg[q-1][0] and idx >= 0:
         r, p = msg[idx]
         arr[p] = False
 
