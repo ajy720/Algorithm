@@ -5,26 +5,22 @@ def solution(board, moves):
 
     for pos in moves:
         pos -= 1
+
         for i in range(n):
-            if board[i][pos]:
-                arr.append(board[i][pos])
+            pick = board[i][pos]
+
+            if pick:
                 board[i][pos] = 0
+
+                if arr and arr[-1] == pick:
+                    arr.pop(-1)
+                    answer += 2
+
+                else:
+                    arr.append(pick)
+            
                 break
-
-    while 1:
-        flag = True
-        i = 0
-        while i < len(arr) - 1:
-            if arr[i] == arr[i+1]:
-                answer += 2
-                arr[i:i+2] = []
-                flag = False
-
-            i += 1
-
-        if flag:
-            break
-
+                    
     return answer
 
 
