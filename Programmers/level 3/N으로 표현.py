@@ -1,44 +1,54 @@
 import sys
 
-dp = []
-
 
 def solution(n, number):
-    global dp
-
     answer = 0
-
-    dp = [sys.maxsize] * (number * n + 1)
-    dp[0] = 2
-    dp[1] = 2
+    dp = [0] * (number * n + 1)
     dp[n] = 1
 
-    for j in range(1, 6):
-        if int(str(n)*j) > number * n:
-            break
+    step = [set() for _ in range(9)]
 
-        dp[int(str(n)*j)] = j
+    for i in range(1, 9):
+        step[i].add(int(str(n)*i))
 
-    for i in range(2, len(dp)):
-        for j in range(1, i):
-            if j >= number:
-                break
+        if int(str(n)*i) < len(dp):
+            dp[int(str(n)*i)] = i
             
-            a = max(i, j)
-            b = min(i, j)
+        for j in range(1, i):
 
-            t = dp[a] + dp[b]
+            for o1 in step[j]:
+                for o2 in step[i-j]:
+                    if o1*o2 == 11:
+                        if 1 == 1:
+                            pass
+                        pass
 
-            if not a+b >= len(dp):
-                dp[a+b] = min(dp[a+b], t)
-            dp[a-b] = min(dp[a-b], t)
-            if not a*b >= len(dp):
-                dp[a*b] = min(dp[a*b], t)
-            dp[a//b] = min(dp[a//b], t)
 
-    answer = -1 if dp[number] > 8 else dp[number]
+                    if 0 < o1+o2 < len(dp) and not dp[o1+o2]:
+                        step[i].add(o1+o2)
+                        dp[o1+o2] = i
 
-    return answer
+                    if 0 < o1-o2 < len(dp) and not dp[o1-o2]:
+                        step[i].add(o1-o2)
+                        dp[o1-o2] = i
+
+                    if 0 < o2-o1 < len(dp) and not dp[o2-o1]:
+                        step[i].add(o2-o1)
+                        dp[o2-o1] = i
+
+                    if 0 < o1*o2 < len(dp) and not dp[o1*o2]:
+                        step[i].add(o1*o2)
+                        dp[o1*o2] = i
+
+                    if 0 < o1//o2 < len(dp) and not dp[o1//o2]:
+                        step[i].add(o1//o2)
+                        dp[o1//o2] = i
+
+                    if 0 < o2//o1 < len(dp) and not dp[o2//o1]:
+                        step[i].add(o2//o1)
+                        dp[o2//o1] = i
+        
+    return dp[number] if dp[number] else -1
 
 
 if __name__ == "__main__":
@@ -52,18 +62,4 @@ if __name__ == "__main__":
 
     n = 1
     number = 1121
-    print(solution(n, number))
-
-
-if __name__ == "__main__":
-    n = 5
-    number = 12
-    print(solution(n, number))
-
-    n = 2
-    number = 11
-    print(solution(n, number))
-
-    n = 1
-    number = 5
     print(solution(n, number))
