@@ -1,57 +1,46 @@
-lang = {
-    'cpp': set(),
-    'python': set(),
-    'java': set()
-}
+from bisect import bisect_left
 
-position = {
-    'backend': set(),
-    'frontend': set()
-}
-
-career = {
-    'junior': set(),
-    'senior': set()
-}
-
-food = {
-    'chicken': set(),
-    'pizza': set()
-}
+d = dict()
 
 
 def solution(info, query):
     answer = []
 
-    base = set()
-
     for i in range(len(info)):
         info[i] = info[i].split()
+        info[i][-1] = int(info[i][-1])
 
-        lang[info[i][0]].add(i)
-        position[info[i][1]].add(i)
-        career[info[i][2]].add(i)
-        food[info[i][3]].add(i)
+        for o in range(16, 32):
+            key = ''
 
-        info[i] = int(info[i][-1])
-        base.add(i)
+            for idx, j in enumerate(f'{o:b}'[1:]):
+                if j == '1':
+                    key += info[i][idx]
+                else:
+                    key += '-'
+
+            if key in d.keys():
+                d[key].append(info[i][-1])
+            else:
+                d[key] = [info[i][-1]]
+
+    for scores in d.values():
+        scores.sort()
 
     for i in range(len(query)):
-        query[i] = query[i].replace('and', '').split()
+        query[i] = query[i].replace(' and ', '').split()
         query[i][-1] = int(query[i][-1])
 
-        s = base.copy()
+        key = ''.join(query[i][:-1])
+        t = 0
 
-        if query[i][0] != '-':
-            s = s.intersection(lang[query[i][0]])
-        if query[i][1] != '-':
-            s = s.intersection(position[query[i][1]])
-        if query[i][2] != '-':
-            s = s.intersection(career[query[i][2]])
-        if query[i][3] != '-':
-            s = s.intersection(food[query[i][3]])
+        try:
+            scores = d[key]
+            t = len(scores) - bisect_left(scores, query[i][-1])
+        except:
+            t = 0
 
-        answer.append(len([no for no in s if info[no] >= query[i][-1]]))
+        answer.append(t)
 
     return answer
 
