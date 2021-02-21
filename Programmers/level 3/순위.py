@@ -8,14 +8,13 @@ def dfs(k, flag):
     dp = dp1 if flag else dp2
 
     if dp[k]:
-        return dp[k]
+        return graph[k]
 
-    for i in graph[k]:
-        dp[k].update(dfs(i, flag))
+    for i in graph[k].copy():
+        graph[k].update(dfs(i, flag))
 
-    dp[k].update(graph[k])
-
-    return dp[k]
+    dp[k] = True
+    return graph[k]
 
 
 def solution(n, results):
@@ -25,8 +24,8 @@ def solution(n, results):
 
     graph1 = [set() for _ in ' '*n]
     graph2 = [set() for _ in ' '*n]
-    dp1 = [set() for _ in ' '*n]
-    dp2 = [set() for _ in ' '*n]
+    dp1 = [False] * n
+    dp2 = [False] * n
 
     for win, lose in results:
         graph1[win-1].add(lose-1)
