@@ -1,6 +1,6 @@
 # Algorithm
 ### 🎯 1 week / 5⬆ solved
-### 🎯 ~ 2/28, 1300 -> 1450⬆ points (Programmers) 
+### 🎯 ~ 3/14, 1300 -> 1450⬆ points (Programmers) 
 **0%[⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜]100%**
 
 ### Completed goal
