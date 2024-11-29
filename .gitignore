@@ -3,3 +3,5 @@
 .DS_Store
 .dist
 package-lock.json
+*.o
+*.o.dSYM/
