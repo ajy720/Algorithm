@@ -1,33 +1,15 @@
-from collections import deque
-
-def bfs():
-
-    while len(dq):
-        v = dq.popleft()
-
-        for i in arr:
-            if not chk[v+i] and v + i < k:
-                dq.append(v+i)
-                chk[v+i] = chk[v] + 1
-            elif v + i== k:
-                print(chk[v] + 1)
-                return
-            elif v + i > k:
-                break
-    
-    print(-1)
+from sys import maxsize
 
 if __name__ == "__main__":
-    chk = [0] * 100000
     n, k = map(int, input().split())
 
-    arr = []
-    for i in " "*n:
-        arr.append(int(input()))
-        chk[arr[-1]] = 1
+    arr = sorted([int(input()) for _ in range(n)])
 
-    arr = sorted(set(arr))
+    dp = [0] + [maxsize] * (k)
 
-    dq = deque(arr)
+    for i in range(1, k + 1):
+        for x in arr:
+            if i - x >= 0:
+                dp[i] = min(dp[i], dp[i - x] + 1)
 
-    bfs()
+    print(dp[k] if dp[k] != maxsize else -1)
