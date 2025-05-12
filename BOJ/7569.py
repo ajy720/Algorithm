@@ -6,6 +6,8 @@ pz = [ 0, 0, 1, 0, 0,-1]
 
 
 def bfs():
+    global arr, q, n, m, h
+    z, y, x = 0, 0, 0
     
     while q:
         z, y, x = q.popleft()
@@ -30,16 +32,15 @@ def bfs():
     return ret
 
 
-if __name__ == "__main__":
-    n, m, h = map(int, input().split())
-    arr = [[[0]*n for i in ' '*m] for i in ' '*h]
-    q = deque()
+n, m, h = map(int, input().split())
+arr = [[[0]*n for i in ' '*m] for i in ' '*h]
+q = deque()
 
-    for i in range(h):
-        for j in range(m):
-            arr[i][j] = [*map(int, input().split())]
-            for k in range(n):
-                if arr[i][j][k] == 1:
-                    q.append((i, j, k))
+for i in range(h):
+    for j in range(m):
+        arr[i][j] = [*map(int, input().split())]
+        for k in range(n):
+            if arr[i][j][k] == 1:
+                q.append((i, j, k))
 
-    print(bfs())
+print(bfs())
