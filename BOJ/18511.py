@@ -1,40 +1,33 @@
+from itertools import product
+from copy import deepcopy
+
+
+def arrToInt(arr):
+    ret = 0
+    for idx, val in enumerate(reversed(arr)):
+        ret += 10**idx * val
+
+    return ret
+
+
+def solve(n, k, arr):
+    res = 0
+    for i in range(len(str(n)), 0, -1):
+        if res:
+            break
+
+        for case in product(deepcopy(arr), repeat=i):
+
+            case_n = arrToInt(case)
+            # print(case_n)
+            if n >= case_n:
+                res = max(res, case_n)
+
+    return res
+
+
 if __name__ == "__main__":
-    
-    n, k = input().split()
-    s = sorted(map(int, input().split()), reverse=True)
-    ans = 0
-    
-    if int(n[0]) in s:
-        pass
-    else:
-        for i in s:
-            if i <= int(n[0]):
-                ans = i
-                break
-        for i in n[1:]:
-            ans *= 10
-            ans += s[0]
-    
-    print(ans)
-        
+    n, k = map(int, input().split())
+    arr = list(map(int, input().split()))
 
-
-'''
-100000000 8
-1 2 3 4 5 6 7 8
-
-546 3
-8 7 9
-
-907 2
-9 4
-
-984054 3
-4 5 6
-
-657 3
-1 5 7
-
-657 3
-6 7 8
-'''
+    print(solve(n, k, arr))
