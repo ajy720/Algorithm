@@ -5,3 +5,5 @@
 package-lock.json
 *.o
 *.o.dSYM/
+
+process/
